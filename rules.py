@@ -50,6 +50,27 @@ def available_fields(board: list[list[Color]], current_color) -> list[tuple[int,
     return result
 
 """
+Обновляет доску
+"""
+def redraw(board: list[list[Color]], chosen_field: tuple[int, int], current_color: Color):
+    enemy_color = Color.BLACK if current_color is Color.WHITE else Color.WHITE
+    for direction in [(-1, -1), (-1, 0), (0, -1), (1, -1), (-1, 1), (0, 1), (1, 0), (1, 1)]:
+        current_field = (chosen_field[0] + direction[0], chosen_field[1] + direction[1])
+        is_valid = False
+        while check_field_validness(current_field) and board[current_field[0]][current_field[1]] is enemy_color:
+            current_field = (current_field[0] + direction[0], current_field[1] + direction[1])
+            if check_field_validness(current_field) and board[current_field[0]][current_field[1]] is current_color:
+                is_valid = True
+                break
+        if is_valid:
+            current_field = (chosen_field[0] + direction[0], chosen_field[1] + direction[1])
+            while check_field_validness(current_field) and board[current_field[0]][current_field[1]] is enemy_color:
+                board[current_field[0]][current_field[1]] = current_color
+                current_field = (current_field[0] + direction[0], current_field[1] + direction[1])
+                if check_field_validness(current_field) and board[current_field[0]][current_field[1]] is current_color:
+                    break
+
+"""
 Выполняет подсчет полей по цветам
 """
 def count_fields(board: list[list[Color]]) -> dict:

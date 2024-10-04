@@ -31,6 +31,7 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
             return {"winner" : winner}
 
         board[chosen_field[0], chosen_field[1]] = current_color
+        rules.redraw(board, chosen_field, current_color)
         turn_index = (turn_index + 1) % 2
     
     color_counts = rules.count_fields(board)
