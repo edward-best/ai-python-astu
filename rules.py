@@ -43,9 +43,9 @@ def available_fields(board: list[list[Color]], current_color) -> list[tuple[int,
     for field in player_fields:
         for direction in [(-1, -1), (-1, 0), (0, -1), (1, -1), (-1, 1), (0, 1), (1, 0), (1, 1)]:
             current_field = (field[0] + direction[0], field[1] + direction[1])
-            while check_field_validness(current_field) and board[current_field[0], current_field[1]] is enemy_color:
+            while check_field_validness(current_field) and board[current_field[0]][current_field[1]] is enemy_color:
                 current_field = (current_field[0] + direction[0], current_field[1] + direction[1])
-                if check_field_validness(current_field) and board[current_field[0], current_field[1]] is Color.EMPTY:
+                if check_field_validness(current_field) and board[current_field[0]][current_field[1]] is Color.EMPTY:
                     result.append(current_field)
     return result
 
@@ -54,6 +54,9 @@ def available_fields(board: list[list[Color]], current_color) -> list[tuple[int,
 """
 def count_fields(board: list[list[Color]]) -> dict:
     result = {}
+    result[Color.BLACK] = 0
+    result[Color.WHITE] = 0
+    result[Color.EMPTY] = 0
     for i in range(8):
         for j in range(8):
             result[board[i][j]] += 1
