@@ -10,7 +10,7 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
     while True:
         current_bot = turn_deque[turn_index]
         current_color = color_deque[turn_index]
-        fields = rules.available_fields()
+        fields = rules.available_fields(board, current_color)
         if len(fields) == 0:
             if not first_stopped:
                 first_stopped = True
