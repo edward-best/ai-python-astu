@@ -1,4 +1,5 @@
 from color import Color
+from copy import deepcopy
 import rules
 
 def session(board: list[list[Color]], first_bot, second_bot) -> dict:
@@ -17,7 +18,7 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
                 continue
             else:
                 break
-        old_board = board
+        old_board = deepcopy(board)
         chosen_field = current_bot(board, current_color)
         if rules.board_diff(old_board, board) or not rules.check_field_validness(chosen_field) \
             or chosen_field is None and len(fields) != 0 or not rules.turn_validness(chosen_field, fields):
