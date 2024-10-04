@@ -3,7 +3,7 @@ from color import Color
 def board_diff(old: list[list[Color]], current: list[list[Color]]) -> int:
     total = 0
     for i in range(8):
-        for j in range(8):
+        for j in range(8): 
             if not old[i][j] is current[i][j]:
                 total += 1
     return total
@@ -15,7 +15,12 @@ def check_turn_validness(turn_made: tuple[int, int], allowed: list[tuple[int, in
     return False
 
 def color_fields(board: list[list[Color]], current_color) -> list[tuple[int, int]]:
-    return [[(i, j) for j in range(8) if board[i][j] is current_color] for i in range(8)]
+    result = []
+    for i in range(8):
+        for j in range(8):
+            if board[i][j] is current_color:
+                result.append((i, j))
+    return result
 
 def check_field_validness(field: tuple[int, int]) -> bool:
     return (field[0] >= 0 and field[0] < 8) and (field[1] >= 0 and field[1] < 8)
