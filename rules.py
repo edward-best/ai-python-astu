@@ -31,7 +31,7 @@ def color_fields(board: list[list[Color]], current_color) -> list[tuple[int, int
 Проверяет выход координаты за пределы доски
 """
 def check_field_validness(field: tuple[int, int]) -> bool:
-    return (field[0] >= 0 and field[0] < 8) and (field[1] >= 0 and field[1] < 8)
+    return field is None or (field[0] >= 0 and field[0] < 8 and field[1] >= 0 and field[1] < 8)
 
 """
 Возвращает список координат, куда можно поставить фишку выбранного цвета
