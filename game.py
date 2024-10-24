@@ -60,6 +60,7 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
     
     color_counts = rules.count_fields(board)
     winner = "draw"
+    protocol.append(f"Было закрашено {color_counts[Color.BLACK]} полей черным цветом, {color_counts[Color.WHITE]} полей белым цветом")
     if color_counts[Color.BLACK] > color_counts[Color.WHITE]:
         winner = protocol["first bot"]
     if color_counts[Color.BLACK] < color_counts[Color.WHITE]:
