@@ -20,5 +20,7 @@ for k in range(0, len(discovered_bots) // 2 * 2, 2):
     board[3][3] = Color.WHITE
     board[4][4] = Color.WHITE
     print(discovered_bots[k][1].__name__, "vs", discovered_bots[k + 1][1].__name__)
-    result = session(board, discovered_bots[k][1].bot_turn, discovered_bots[k + 1][1].bot_turn)
-    print(result)
+    result = session(board, discovered_bots[k][1], discovered_bots[k + 1][1])
+    summary = "\n".join(result["details"])
+    print(summary)
+    print("Победитель", result["winner"])

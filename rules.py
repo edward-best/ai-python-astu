@@ -52,8 +52,9 @@ def available_fields(board: list[list[Color]], current_color) -> list[tuple[int,
 """
 Обновляет доску
 """
-def redraw(board: list[list[Color]], chosen_field: tuple[int, int], current_color: Color):
+def redraw(board: list[list[Color]], chosen_field: tuple[int, int], current_color: Color, protocol):
     enemy_color = Color.BLACK if current_color is Color.WHITE else Color.WHITE
+    redrawn = []
     for direction in [(-1, -1), (-1, 0), (0, -1), (1, -1), (-1, 1), (0, 1), (1, 0), (1, 1)]:
         current_field = (chosen_field[0] + direction[0], chosen_field[1] + direction[1])
         is_valid = False
@@ -66,18 +67,21 @@ def redraw(board: list[list[Color]], chosen_field: tuple[int, int], current_colo
             current_field = (chosen_field[0] + direction[0], chosen_field[1] + direction[1])
             while check_field_validness(current_field) and board[current_field[0]][current_field[1]] is enemy_color:
                 board[current_field[0]][current_field[1]] = current_color
+                redrawn.append(current_field)
                 current_field = (current_field[0] + direction[0], current_field[1] + direction[1])
                 if check_field_validness(current_field) and board[current_field[0]][current_field[1]] is current_color:
                     break
+    
+    protocol.append(f"Поля {redrawn} перекрашены из {enemy_color} в {current_color}")
 
 """
 Выполняет подсчет полей по цветам
 """
 def count_fields(board: list[list[Color]]) -> dict:
-    result = {}
-    result[Color.BLACK] = 0
-    result[Color.WHITE] = 0
-    result[Color.EMPTY] = 0
+    result = {
+        Color.BLACK: 0,
+        Color.WHITE: 0,
+        Color.EMPTY: 0 }
     for i in range(8):
         for j in range(8):
             result[board[i][j]] += 1
