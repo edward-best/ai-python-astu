@@ -72,7 +72,7 @@ def redraw(board: list[list[Color]], chosen_field: tuple[int, int], current_colo
                 if check_field_validness(current_field) and board[current_field[0]][current_field[1]] is current_color:
                     break
     
-    protocol.append(f"Поля {redrawn} перекрашены из {enemy_color} в {current_color}")
+    protocol["details"].append(f"Поля {redrawn} перекрашены из {enemy_color} в {current_color}")
 
 """
 Выполняет подсчет полей по цветам
