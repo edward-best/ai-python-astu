@@ -57,6 +57,8 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
         rules.redraw(board, chosen_field, current_color, protocol)
 
         turn_index = (turn_index + 1) % 2
+
+        first_stopped = False
     
     color_counts = rules.count_fields(board)
     winner = "draw"
