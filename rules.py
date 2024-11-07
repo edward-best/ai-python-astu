@@ -47,7 +47,7 @@ def available_fields(board: list[list[Color]], current_color) -> list[tuple[int,
                 current_field = (current_field[0] + direction[0], current_field[1] + direction[1])
                 if check_field_validness(current_field) and board[current_field[0]][current_field[1]] is Color.EMPTY:
                     result.append(current_field)
-    return result
+    return list(set(result))
 
 """
 Обновляет доску

@@ -6,7 +6,8 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
     protocol = {
         "first bot" : first_bot.__name__,
         "second bot" : second_bot.__name__,
-        "details" : []
+        "details" : [],
+        "stat": {}
     }
 
     name_deque = [first_bot.__name__, second_bot.__name__]
@@ -68,4 +69,6 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
     if color_counts[Color.BLACK] < color_counts[Color.WHITE]:
         winner = protocol["second bot"]
     protocol["winner"] = winner
+    protocol["stat"][name_deque[0]] = color_counts[Color.BLACK]
+    protocol["stat"][name_deque[1]] = color_counts[Color.WHITE]
     return protocol
