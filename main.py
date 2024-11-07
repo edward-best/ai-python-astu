@@ -68,7 +68,7 @@ def group_stage(playing_bots):
     return obj
 
 i = 1
-while len(discovered_bots) != 1:
+while len(discovered_bots) > 1:
     print("Раунд ", i)
     divided = divide(discovered_bots)
     winners = []
