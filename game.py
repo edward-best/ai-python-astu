@@ -51,6 +51,9 @@ def session(board: list[list[Color]], first_bot, second_bot) -> dict:
             turn_index = (turn_index + 1) % 2
             winner = protocol["first bot"] if turn_index == 0 else protocol["second bot"]
             protocol["winner"] = winner
+            protocol["stat"][winner] = 64
+            loser = protocol["second bot"] if turn_index == 0 else protocol["first bot"]
+            protocol["stat"][loser] = 0
             return protocol
 
         board[chosen_field[0]][chosen_field[1]] = current_color
