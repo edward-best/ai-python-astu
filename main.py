@@ -38,6 +38,7 @@ def divide(bots):
 def get_winner(obj):
     winner_name = None
     winner_score = 0
+    print(obj)
     for winner, score in obj.items():
         if score >= winner_score:
             winner_name = winner
@@ -52,9 +53,15 @@ def group_stage(playing_bots):
         board = init_game_board()
         results.append(session(board, playing_bots[0][1], playing_bots[1][1]))
     else:
-        results.append(group_stage(playing_bots[0:2]))
-        results.append(group_stage([playing_bots[0], playing_bots[2]]))
-        results.append(group_stage(playing_bots[1:3]))
+        tmp = group_stage(playing_bots[0:2])
+        print(tmp)
+        results.append(tmp)
+        tmp = group_stage([playing_bots[0], playing_bots[2]])
+        print(tmp)
+        results.append(tmp)
+        tmp = group_stage(playing_bots[1:3])
+        print(tmp)
+        results.append(tmp)
 
     if len(playing_bots) == 2:
         for result in results:
